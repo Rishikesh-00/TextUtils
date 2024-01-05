@@ -6,30 +6,37 @@ export default function TextForm(props) {
   const [text,setText] = useState('');
     const handelUpClick=()=>{
       if (text.length===0)
-        alert("Empty TextField")
-      else
+      props.showAlert("Empty TextField","danger")
+      else{
+        
         setText(text.toUpperCase())
+       props.showAlert("Converted to UpperCase","success")
+      }
     }
     const handelowClick=()=>{
       if (text.length===0)
-        alert("Empty TextField")
-      else
+      props.showAlert("Empty TextField","danger")
+      else{
         setText(text.toLowerCase())
+        props.showAlert("Converted to LowerCase","success")
+      }
     }
     const handeSpaceClick=()=>{
       if (text.length===0)
-        alert("Empty TextField")
+      props.showAlert("Empty TextField","danger")
       else{
         var newText=text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Extra space removed!","success")
       }
     }
     const handeclrClick=()=>{
       setText("")
+      props.showAlert("Text is cleared!!","success")
     }
     const handecopyClick=()=>{
       navigator.clipboard.writeText(text);
-      alert("Text copied!");
+      props.showAlert("Text is copied!!","success")
     }
     const handelOnChange=(_)=>{
         setText(_.target.value)
