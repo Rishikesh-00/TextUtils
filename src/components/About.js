@@ -1,30 +1,46 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 
-export default function About() {
+export default function About(props) {
+  // const [mystyle, setMyStyle] = useState({
+  //   color: "black",
+  //   backgroundColor: "white"
+  // });
+  // const [btntxt, setBtnTxt] = useState("Enable dark mode")
+  // const toggleStyle=()=>{
+  //   // alert(mystyle.color)
+  //   if(mystyle.color==='white'){
+  //     setMyStyle({
+  //       color:"black",
+  //       backgroundColor:"white"
+  //     })
+  //     setBtnTxt("Enable dark mode")
+  //   }
+  //   else{
+  //     setMyStyle({
+  //       color:"white",
+  //       backgroundColor:"black"
+  //     })
+  //     setBtnTxt("Enable light mode")
+  //   }
+  // }
   const [mystyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white"
+    color: "",
+    backgroundColor: ""
   });
-  const [btntxt, setBtnTxt] = useState("Enable dark mode")
-  const toggleStyle=()=>{
-    // alert(mystyle.color)
-    if(mystyle.color==='white'){
-      setMyStyle({
-        color:"black",
-        backgroundColor:"white"
-      })
-      setBtnTxt("Enable dark mode")
-    }
-    else{
-      setMyStyle({
-        color:"white",
-        backgroundColor:"black"
-      })
-      setBtnTxt("Enable light mode")
-    }
-  }
 
-
+  useEffect(() => {
+    if (props.mode === 'light') {
+      setMyStyle({
+        color: "#042743",
+        backgroundColor: "white"
+      });
+    } else {
+      setMyStyle({
+        color: "white",
+        backgroundColor: "#042743"
+      });
+    }
+  }, [props.mode]);
   return (
     <div className="container my-2 p-2 " style={mystyle} >
         <h1>About us</h1>
@@ -120,7 +136,7 @@ export default function About() {
         </div>
       </div>
       <div className="container my-3">
-      <button  type="button " className="btn btn-secondary " onClick={toggleStyle}>{btntxt}</button>
+      {/* <button  type="button " className="btn btn-secondary " onClick={toggleStyle}>{btntxt}</button> */}
       </div>
     </div>
   );
